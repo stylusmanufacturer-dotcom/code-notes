@@ -1,10 +1,12 @@
+from importlib.resources import contents
+
 from ..models.note import Note
 from ..schemas.note import NoteCreate
 from sqlalchemy.orm import Session
 
 
 def create_note(note: NoteCreate, user_id: int, db: Session):
-    note = Note(note.title, note.content, owner_id=user_id)
+    note = Note(title=note.title, content=note.content, owner_id=user_id)
     db.add(note)
     db.commit()
     db.refresh(note)

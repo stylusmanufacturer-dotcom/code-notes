@@ -10,7 +10,7 @@ from ....crud.user import get_user_by_email
 router = APIRouter()
 
 @router.post("/", response_model=NoteResponse)
-def create_note(note: NoteCreate, db: Session = Depends(get_db), current_user: str = Depends(get_current_user)):
+def create_note_route(note: NoteCreate, db: Session = Depends(get_db), current_user: str = Depends(get_current_user)):
     user = get_user_by_email(db, email=current_user)
 
     return create_note(note, user.id, db)
