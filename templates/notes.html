@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}My Notes{% endblock %}
+{% block content %}
+<form action="/api/v1/notes/" method="POST">
+  <input type="text" name="title" placeholder="Note Title">
+  <textarea name="content" placeholder="Note Content"></textarea>
+  <button type="submit">Add Nots</button>
+</form>
+
+{% for note in notes %}
+  <p>{{ note.title }}</p>
+{% endfor %}
+
+{% endblock %}

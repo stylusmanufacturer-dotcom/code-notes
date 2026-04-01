@@ -11,8 +11,8 @@ def create_note(note: NoteCreate, user_id: int, db: Session):
     db.commit()
     db.refresh(note)
     return note
-def get_notes(user_id: int, db: Session):
-    return db.query(Note).filter(Note.user_id == user_id).all()
+def get_notes(db: Session, user_id: int):
+    return db.query(Note).filter(Note.owner_id == user_id).all()
 
 def get_note(note_id: int, db: Session):
     return db.query(Note).filter(Note.id == note_id).first()

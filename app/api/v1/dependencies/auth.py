@@ -1,16 +1,10 @@
-from fastapi import Depends
-from fastapi.security import OAuth2PasswordBearer
+from fastapi import Request, HTTPException
 
-from app.core.security import verify_token
+from ....core.security import verify_token
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/v1/auth/login")
-
-
-
-
-
-def get_current_user(token: str = Depends(oauth2_scheme)):
+def get_current_user(request: Request):
+    token = request.cookies.get("access_token")
+    if not token:
+        raise HTTPException(status_code=401, detail="Not authenticated")
     return verify_token(token)
-
-
 

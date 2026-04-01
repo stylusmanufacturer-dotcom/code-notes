@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Login{% endblock %}
+{% block content %}
+
+<form action="/api/v1/auth/login" method="POST">
+  <input type="email" name="username" placeholder="Enter Email Address"/>
+  <input type="password" name="password" placeholder="Enter Password"/>
+  <button type="submit">Login</button>
+</form>
+
+{% endblock %}
